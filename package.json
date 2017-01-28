@@ -1,0 +1,11 @@
+{
+  "name": "liefs-lib",
+  "version": "1.0.0",
+  "description": "Library of Utility Functions used by electriclief",
+  "main": "liefs-lib.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stacy Lief Kelly",
+  "license": "ISC"
+}

@@ -1,4 +1,3 @@
-"use strict";
 var liefsError = {
     matchLength: function (expected, received, reference) {
         if (reference === void 0) { reference = ""; }

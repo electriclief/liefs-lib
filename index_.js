@@ -57,18 +57,17 @@ function trimCompare(a, b) {
 function isStart(value) {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
-function isItem(value) {
-    for (var thisone in ["label", "start", "current"])
-        if (!(thisone in value))
-            return false;
+/*
+ function isItem(value: any): boolean {
+    for (let thisone in ["label", "start", "current"]) if (!(thisone in value)) return false;
     return true;
 }
-function isContainer(value) {
-    for (var thisone in ["label", "margin", "direction"])
-        if (!(thisone in value))
-            return false;
+
+ function isContainer(value: any): boolean {
+    for (let thisone in ["label", "margin", "direction"]) if (!(thisone in value)) return false;
     return true;
 }
+*/
 function TypeOf(value, match) {
     if (match === void 0) { match = undefined; }
     var ctype = typeof value, temp;

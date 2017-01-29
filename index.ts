@@ -49,7 +49,7 @@ export function trimCompare(a: string, b: string): boolean {
 export function isStart(value: string): boolean {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
-
+/*
 export function isItem(value: any): boolean {
     for (let thisone in ["label", "start", "current"]) if (!(thisone in value)) return false;
     return true;
@@ -59,7 +59,7 @@ export function isContainer(value: any): boolean {
     for (let thisone in ["label", "margin", "direction"]) if (!(thisone in value)) return false;
     return true;
 }
-
+*/
 export function TypeOf(value: any, match: string = undefined): string|boolean {
     let ctype: string = typeof value, temp: string;
     if (ctype === "object")

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>liefs-lib-tests Jasmine Spec Runner v2.5.2</title>
+
+  <link rel="shortcut icon" type="image/png" href="../jasmine-core/images/jasmine_favicon.png">
+  <link rel="stylesheet" href="../../lib/jasmine-2.5.2/jasmine.css">
+
+  <script src="../jasmine-core/lib/jasmine-core/jasmine.js"></script>
+  <script src="../jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+  <script src="../jasmine-core/lib/jasmine-core/boot.js"></script>
+  <!-- include source files here... -->
+  <script src="liefs-lib.js"></script>
+  <!-- include spec files here... -->
+  <script>
+
+  describe("Tests For liefs-lib", function() {
+    var testNumber = 5;
+    var testString = "one:two:three:four";
+    var testFunction = function(){};
+    var testOn = {a:1, b:2, c:3};
+    var testOs = {a:"1", b:"2", c:"3"};
+    var testAn = [1, 2, 3];
+    var testAs = ["1", "2", "3"];
+    var testAAs = [ ["1", "2", "3"], ["1", "2", "3"]];
+
+
+    describe("Test for nthIndex()", function (){
+      it("Checking Values", function() {
+        expect(nthIndex(testString, ":", 2)).toBe(7);
+      })
+    });
+
+    describe("Test for occurrences()", function (){
+      it("Checking Values", function() {
+        expect(occurrences(testString, ":")).toBe(3);
+      });
+    });
+
+    describe("Test for trimCompare()", function (){
+      it("Checking Values", function() {
+        expect(trimCompare("one:two", "one:two")).toBe(true);
+        expect(trimCompare("one:two", "one")).toBe(true);
+        expect(trimCompare("one", "one:two")).toBe(false);
+      });
+    });
+
+    describe("Test for isStart()", function() {
+      it("Checking Types", function () {
+        expect(isStart("200px")).toBe(true);
+        expect(isStart("100%")).toBe(true);
+        expect(isStart("anything else")).toBe(false);
+      });
+    });
+
+    describe("Test for argsObj()", function () {
+      it("Checking Types", function () {
+        expect(argsObj([1,"2",[3]])).toEqual({number: [1], string: ['2'], array_number: [[3]]});
+      });
+    });
+
+    describe("Test for TypeOf()", function () {
+      it("Checking Types", function () {
+        expect(TypeOf(testNumber)).toBe('number');
+        expect(TypeOf(testString)).toBe('string');
+        expect(TypeOf(testOn)).toBe('object:number');
+        expect(TypeOf(testOs)).toBe('object:string');
+        expect(TypeOf(testAn)).toBe('array:number');
+        expect(TypeOf(testAs)).toBe('array:string');
+        expect(TypeOf(testAAs)).toBe('array:array:string');
+        expect(TypeOf(testFunction)).toBe('function');
+        expect(TypeOf("200px")).toBe('start');
+        expect(TypeOf("200%")).toBe('start');
+        expect(TypeOf("200")).toBe('string');
+        expect(TypeOf()).toBe('undefined');
+      });
+      it("Checking Match", function () {
+        expect(TypeOf(testNumber, 'number')).toBe(true);
+        expect(TypeOf(testOn, 'object:number')).toBe(true);
+        expect(TypeOf(testOn, 'object')).toBe(true);
+        expect(TypeOf(testAn, 'array:number')).toBe(true);
+        expect(TypeOf(testAn, 'array')).toBe(true);
+        expect(TypeOf(testNumber, 'string')).toBe(false);
+        expect(TypeOf("200%", 'start')).toBe(true);
+        expect(TypeOf("200px", 'start')).toBe(true);
+        expect(TypeOf("200", 'string')).toBe(true);
+      });
+    });
+  });
+  </script>
+</head>
+
+<body>
+</body>
+</html>

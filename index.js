@@ -1,4 +1,5 @@
-export var liefsError = {
+"use strict";
+exports.liefsError = {
     matchLength: function (expected, received, reference) {
         if (reference === void 0) { reference = ""; }
         var plus = "";
@@ -21,7 +22,7 @@ export var liefsError = {
         throw reference + " Expected " + expected + " received " + received + ".";
     }
 };
-export function nthIndex(str, pat, n) {
+function nthIndex(str, pat, n) {
     var L = str.length, i = -1;
     while (n-- && i++ < L) {
         i = str.indexOf(pat, i);
@@ -30,7 +31,8 @@ export function nthIndex(str, pat, n) {
     }
     return i;
 }
-export function occurrences(thisString, subString, allowOverlapping) {
+exports.nthIndex = nthIndex;
+function occurrences(thisString, subString, allowOverlapping) {
     if (allowOverlapping === void 0) { allowOverlapping = false; }
     thisString += "";
     subString += "";
@@ -48,15 +50,29 @@ export function occurrences(thisString, subString, allowOverlapping) {
     }
     return n;
 }
-export function trimCompare(a, b) {
+exports.occurrences = occurrences;
+function trimCompare(a, b) {
     if (occurrences(b, ":") < occurrences(a, ":"))
         a = a.slice(0, nthIndex(a, ":", occurrences(b, ":") + 1));
     return (a === b);
 }
-export function isStart(value) {
+exports.trimCompare = trimCompare;
+function isStart(value) {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
-export function TypeOf(value, match) {
+exports.isStart = isStart;
+/*
+export function isItem(value: any): boolean {
+    for (let thisone in ["label", "start", "current"]) if (!(thisone in value)) return false;
+    return true;
+}
+
+export function isContainer(value: any): boolean {
+    for (let thisone in ["label", "margin", "direction"]) if (!(thisone in value)) return false;
+    return true;
+}
+*/
+function TypeOf(value, match) {
     if (match === void 0) { match = undefined; }
     var ctype = typeof value, temp;
     if (ctype === "object")
@@ -84,12 +100,14 @@ export function TypeOf(value, match) {
         }
     return ctype;
 }
-export function setArgsObj(target, key, index) {
+exports.TypeOf = TypeOf;
+function setArgsObj(target, key, index) {
     if (index === void 0) { index = 0; }
     if ((key in this.myArgsObj) && (index < this.myArgsObj[key].length))
         target = this.myArgsObj[key][index];
 }
-export function argsObj(args) {
+exports.setArgsObj = setArgsObj;
+function argsObj(args) {
     var retObj = {}, ctype;
     for (var i = 0; i < args.length; i++) {
         ctype = TypeOf(args[i]).replace(":", "_");
@@ -99,22 +117,25 @@ export function argsObj(args) {
     }
     return retObj;
 }
-export function CheckArgTypes(args, types, reference, checkLength) {
+exports.argsObj = argsObj;
+function CheckArgTypes(args, types, reference, checkLength) {
     if (reference === void 0) { reference = ""; }
     if (checkLength === void 0) { checkLength = true; }
     reference += " typeCheck";
     if (checkLength && args.length !== types.length)
-        liefsError.matchLength(types.length, args.length, reference);
+        exports.liefsError.matchLength(types.length, args.length, reference);
     for (var i = 0; i < types.length; i++)
         if (TypeOf(args[i]) !== types[i])
-            liefsError.typeMismatch(types[i], args[i], reference);
+            exports.liefsError.typeMismatch(types[i], args[i], reference);
     return true;
 }
-export function el(id) {
+exports.CheckArgTypes = CheckArgTypes;
+function el(id) {
     CheckArgTypes(arguments, ["string"], "el()");
     return document.getElementById(id);
 }
-export function directive(querrySelectorAll, attributesList) {
+exports.el = el;
+function directive(querrySelectorAll, attributesList) {
     CheckArgTypes(arguments, ["string", "array:string"], "directive()");
     var returnArray = [];
     var Obj;
@@ -138,7 +159,8 @@ export function directive(querrySelectorAll, attributesList) {
     }
     return returnArray;
 }
-export function loadDoc(eid, page) {
+exports.directive = directive;
+function loadDoc(eid, page) {
     var _this = this;
     CheckArgTypes(arguments, ["string", "string"], "loadDoc()");
     var e = document.getElementById(eid);
@@ -152,35 +174,42 @@ export function loadDoc(eid, page) {
         xhttp.send();
     }
 }
-export function directiveSetStyles(el, stylesObject) {
+exports.loadDoc = loadDoc;
+function directiveSetStyles(el, stylesObject) {
     for (var key in stylesObject)
         el["style"][key] = stylesObject[key];
 }
-export function waitForIt(conditionFunction, actionFunction) {
+exports.directiveSetStyles = directiveSetStyles;
+function waitForIt(conditionFunction, actionFunction) {
     CheckArgTypes(arguments, ["function", "function"], "waitForIt()");
     if (!conditionFunction())
         window.setTimeout(waitForIt.bind(null, conditionFunction, actionFunction), 100);
     else
         actionFunction();
 }
-export function createElement(type) {
+exports.waitForIt = waitForIt;
+function createElement(type) {
     CheckArgTypes(arguments, ["string"], "createElement()");
     return document.createElement(type);
 }
-export function fillDivWithText(text, element) {
+exports.createElement = createElement;
+function fillDivWithText(text, element) {
     return element["createTextNode"](text);
 }
-export function addAttribute(element, name, value) {
+exports.fillDivWithText = fillDivWithText;
+function addAttribute(element, name, value) {
     var att = document.createAttribute(name);
     att.value = value;
     element.setAttributeNode(att);
     return element;
 }
-export function obid(id) {
+exports.addAttribute = addAttribute;
+function obid(id) {
     CheckArgTypes(arguments, ["string"], "obid()");
     return document.getElementById(id);
 }
-export function pauseEvent(e, key) {
+exports.obid = obid;
+function pauseEvent(e, key) {
     if (key === void 0) { key = "selection"; }
     if (document[key]) {
         document[key].empty();
@@ -196,22 +225,25 @@ export function pauseEvent(e, key) {
     e.returnValue = false;
     return false;
 }
-export function isItIn(key, object) {
+exports.pauseEvent = pauseEvent;
+function isItIn(key, object) {
     CheckArgTypes(arguments, ["string", "object"], "isItIn()");
     var keys = Object.keys(object);
     if (keys.indexOf(key) === -1)
         return null;
     return object[key];
 }
-export function throwType(expected, received, reference) {
+exports.isItIn = isItIn;
+function throwType(expected, received, reference) {
     if (reference === void 0) { reference = ""; }
     CheckArgTypes(arguments, ["string", "string", "string"], reference + " throwType()", false);
     throw "Invalid Type Entered " + reference + " expected type " + expected + " received type " + received;
 }
-export function Objectassign(obj) {
+exports.throwType = throwType;
+function Objectassign(obj) {
     var ro = {};
     for (var key in obj)
         ro[key] = obj[key];
     return ro;
 }
-//# sourceMappingURL=index.js.map
+exports.Objectassign = Objectassign;

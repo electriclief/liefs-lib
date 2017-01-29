@@ -1,4 +1,4 @@
-import {Directive} from "../liefs-interfaces/liefs-interfaces";
+import { Directive } from "liefs-interfaces";
 export let liefsError = {
     matchLength: (expected: number, received: number, reference: string = "") => {
         let plus: string = "";

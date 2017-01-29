@@ -61,17 +61,6 @@ function isStart(value) {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
 exports.isStart = isStart;
-/*
-export function isItem(value: any): boolean {
-    for (let thisone in ["label", "start", "current"]) if (!(thisone in value)) return false;
-    return true;
-}
-
-export function isContainer(value: any): boolean {
-    for (let thisone in ["label", "margin", "direction"]) if (!(thisone in value)) return false;
-    return true;
-}
-*/
 function TypeOf(value, match) {
     if (match === void 0) { match = undefined; }
     var ctype = typeof value, temp;

@@ -49,26 +49,16 @@ export function trimCompare(a: string, b: string): boolean {
 export function isStart(value: string): boolean {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
-/*
-export function isItem(value: any): boolean {
-    for (let thisone in ["label", "start", "current"]) if (!(thisone in value)) return false;
-    return true;
-}
 
-export function isContainer(value: any): boolean {
-    for (let thisone in ["label", "margin", "direction"]) if (!(thisone in value)) return false;
-    return true;
-}
-*/
-export function TypeOf(value: any, match: string = undefined): string|boolean {
+export function TypeOf(value: any, match: string = undefined): string | boolean {
     let ctype: string = typeof value, temp: string;
     if (ctype === "object")
-        if (Array.isArray(value)) ctype = "array:" + TypeOf(<Array<any>> value[0]);
+        if (Array.isArray(value)) ctype = "array:" + TypeOf(<Array<any>>value[0]);
         else if ((value["constructor"] && value.constructor["name"])
-          && (typeof value["constructor"] === "function")
+            && (typeof value["constructor"] === "function")
             && (["Object", "Array"].indexOf(value.constructor.name) === -1))
-              ctype = value.constructor.name;
-        else ctype = "object:" + TypeOf(<Object> value[Object.keys(value)[0]]);
+            ctype = value.constructor.name;
+        else ctype = "object:" + TypeOf(<Object>value[Object.keys(value)[0]]);
     else if (ctype === "string") if (isStart(value)) ctype = "start";
     if (match)
         if (match.indexOf("|") === -1) return trimCompare(ctype, match);
@@ -79,9 +69,9 @@ export function TypeOf(value: any, match: string = undefined): string|boolean {
     return ctype;
 }
 
-export function setArgsObj (target: any, key: string, index: number = 0 ) {
-  if ((key in this.myArgsObj) && (index < this.myArgsObj[key].length))
-    target = this.myArgsObj[key][index];
+export function setArgsObj(target: any, key: string, index: number = 0) {
+    if ((key in this.myArgsObj) && (index < this.myArgsObj[key].length))
+        target = this.myArgsObj[key][index];
 }
 
 export function argsObj(args: IArguments): any {
@@ -115,7 +105,7 @@ export function directive(querrySelectorAll: string, attributesList: Array<strin
     let Obj: Directive;
     let NodeList = document.querySelectorAll(querrySelectorAll);
     for (let i = 0; i < NodeList.length; i++) {
-        Obj = {el: NodeList[i], tagname: NodeList[i].tagName};
+        Obj = { el: NodeList[i], tagname: NodeList[i].tagName };
         for (let eachAttribute of attributesList)
             if (NodeList[i].getAttribute(eachAttribute) === undefined) {
                 Obj[eachAttribute] = undefined;

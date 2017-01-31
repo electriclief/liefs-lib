@@ -90,10 +90,17 @@ function TypeOf(value, match) {
     return ctype;
 }
 exports.TypeOf = TypeOf;
-function setArgsObj(target, key, index) {
+function setArgsObj(key, index, ref) {
     if (index === void 0) { index = 0; }
-    if ((key in this.myArgsObj) && (index < this.myArgsObj[key].length))
+    if (ref === void 0) { ref = ""; }
+    var target;
+    if (!(this.myArgsObj))
+        throw "setArgsObj Empty";
+    if ((key in this.myArgsObj) && (index < this.myArgsObj[key].length)) {
+        /*    console.log(ref + "setting to " + this.myArgsObj[key][index]); */
         target = this.myArgsObj[key][index];
+    } // else console.log("index fail -" + key);
+    return target;
 }
 exports.setArgsObj = setArgsObj;
 function argsObj(args) {
@@ -124,6 +131,10 @@ function el(id) {
     return document.getElementById(id);
 }
 exports.el = el;
+function isUniqueSelector(selector) {
+    return ((document.querySelectorAll(selector)).length === 1);
+}
+exports.isUniqueSelector = isUniqueSelector;
 function directive(querrySelectorAll, attributesList) {
     CheckArgTypes(arguments, ["string", "array:string"], "directive()");
     var returnArray = [];

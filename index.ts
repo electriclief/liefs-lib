@@ -69,9 +69,14 @@ export function TypeOf(value: any, match: string = undefined): string | boolean 
     return ctype;
 }
 
-export function setArgsObj(target: any, key: string, index: number = 0) {
-    if ((key in this.myArgsObj) && (index < this.myArgsObj[key].length))
+export function setArgsObj(key: string, index: number = 0, ref: string = ""): any {
+    let target: any;
+    if (!(this.myArgsObj)) throw "setArgsObj Empty";
+    if ((key in this.myArgsObj) && (index < this.myArgsObj[key].length)) {
+  /*    console.log(ref + "setting to " + this.myArgsObj[key][index]); */
         target = this.myArgsObj[key][index];
+    } // else console.log("index fail -" + key);
+    return target;
 }
 
 export function argsObj(args: IArguments): any {
@@ -97,6 +102,10 @@ export function CheckArgTypes(args: IArguments, types: string[], reference: stri
 export function el(id: string): HTMLElement {
     CheckArgTypes(arguments, ["string"], "el()");
     return document.getElementById(id);
+}
+
+export function isUniqueSelector(selector: string) {
+  return ((document.querySelectorAll(selector)).length === 1);
 }
 
 export function directive(querrySelectorAll: string, attributesList: Array<string>): Array<{}> {

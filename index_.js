@@ -21,6 +21,15 @@ var liefsError = {
         throw reference + " Expected " + expected + " received " + received + ".";
     }
 };
+function uniqueArray(array, optionalConcatArray) {
+    if (optionalConcatArray === void 0) { optionalConcatArray = []; }
+    var a = array.concat(optionalConcatArray);
+    for (var i = 0; i < a.length; ++i)
+        for (var j = i + 1; j < a.length; ++j)
+            if (a[i] === a[j])
+                a.splice(j--, 1);
+    return a;
+}
 function nthIndex(str, pat, n) {
     var L = str.length, i = -1;
     while (n-- && i++ < L) {

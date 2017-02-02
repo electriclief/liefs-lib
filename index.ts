@@ -17,6 +17,12 @@ export let liefsError = {
     }
 };
 
+export function uniqueArray(array: Array<any>, optionalConcatArray: Array<any> = []) {
+    let a = array.concat(optionalConcatArray);
+    for (let i = 0; i < a.length; ++i) for (let j = i + 1; j < a.length; ++j) if (a[i] === a[j]) a.splice(j--, 1);
+    return a;
+}
+
 export function nthIndex(str: string, pat: string, n: number): number {
     let L = str.length, i = -1;
     while (n-- && i++ < L) {

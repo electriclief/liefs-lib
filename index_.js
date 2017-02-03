@@ -173,8 +173,10 @@ function loadDoc(eid, page) {
     }
 }
 function directiveSetStyles(el, stylesObject) {
-    for (var key in stylesObject)
+    for (var _i = 0, _a = Object.keys(stylesObject); _i < _a.length; _i++) {
+        var key = _a[_i];
         el["style"][key] = stylesObject[key];
+    }
 }
 function waitForIt(conditionFunction, actionFunction) {
     CheckArgTypes(arguments, ["function", "function"], "waitForIt()");

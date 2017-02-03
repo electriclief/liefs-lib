@@ -154,8 +154,7 @@ export function loadDoc(eid: string, page: string): void {
 }
 
 export function directiveSetStyles(el: Element, stylesObject: {}): void {
-    for (let key in stylesObject)
-        el["style"][key] = stylesObject[key];
+    for (let key of Object.keys(stylesObject)) el["style"][key] = stylesObject[key];
 }
 
 export function waitForIt(conditionFunction: Function, actionFunction: Function): void {

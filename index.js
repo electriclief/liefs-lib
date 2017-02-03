@@ -261,3 +261,16 @@ function Objectassign(obj) {
     return ro;
 }
 exports.Objectassign = Objectassign;
+function myIndexOf(sstring, search, occurance, start) {
+    if (occurance) {
+        start = sstring.indexOf(search, start) + 1;
+        --occurance;
+        if (occurance)
+            return myIndexOf(sstring.slice(start), search, occurance, start);
+        else
+            return sstring.slice(start);
+    }
+    else
+        return sstring;
+}
+exports.myIndexOf = myIndexOf;

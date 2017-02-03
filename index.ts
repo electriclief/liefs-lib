@@ -56,7 +56,7 @@ export function isStart(value: string): boolean {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
 
-export function px(value: number): string {return value.toString() + "px"; }
+export function px(value: number): string { return value.toString() + "px"; }
 
 export function TypeOf(value: any, match: string = undefined): string | boolean {
     let ctype: string = typeof value, temp: string;
@@ -81,7 +81,7 @@ export function setArgsObj(key: string, index: number = 0, ref: string = ""): an
     let target: any;
     if (!(this.myArgsObj)) throw "setArgsObj Empty";
     if ((key in this.myArgsObj) && (index < this.myArgsObj[key].length)) {
-  /*    console.log(ref + "setting to " + this.myArgsObj[key][index]); */
+        /*    console.log(ref + "setting to " + this.myArgsObj[key][index]); */
         target = this.myArgsObj[key][index];
     } // else console.log("index fail -" + key);
     return target;
@@ -113,7 +113,7 @@ export function el(id: string): Element {
 }
 
 export function isUniqueSelector(selector: string) {
-  return ((document.querySelectorAll(selector)).length === 1);
+    return ((document.querySelectorAll(selector)).length === 1);
 }
 
 export function directive(querrySelectorAll: string, attributesList: Array<string>): Array<{}> {
@@ -195,7 +195,7 @@ export function pauseEvent(e: Event, key: string = "selection"): boolean { // ma
     return false;
 }
 export function isItIn(key: string, object: {}) {
-//    CheckArgTypes(arguments, ["string", "object"], "isItIn()");
+    //    CheckArgTypes(arguments, ["string", "object"], "isItIn()");
     let keys = Object.keys(object);
     if (keys.indexOf(key) === -1) return null;
     return object[key];
@@ -209,4 +209,14 @@ export function Objectassign(obj: any): {} { // where obj is Directive object
     let ro = {};
     for (let key in obj) ro[key] = obj[key];
     return ro;
+}
+export function myIndexOf(sstring: string, search: string, occurance: number, start: number) {
+    if (occurance) {
+        start = sstring.indexOf(search, start) + 1;
+        --occurance;
+        if (occurance)
+            return myIndexOf(sstring.slice(start), search, occurance, start);
+        else
+            return sstring.slice(start);
+    } else return sstring;
 }

@@ -219,7 +219,7 @@ function pauseEvent(e, key) {
     return false;
 }
 function isItIn(key, object) {
-    CheckArgTypes(arguments, ["string", "object"], "isItIn()");
+    //    CheckArgTypes(arguments, ["string", "object"], "isItIn()");
     var keys = Object.keys(object);
     if (keys.indexOf(key) === -1)
         return null;

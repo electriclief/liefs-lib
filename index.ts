@@ -56,6 +56,8 @@ export function isStart(value: string): boolean {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
 
+export function px(value: number): string {return value.toString() + "px"; }
+
 export function TypeOf(value: any, match: string = undefined): string | boolean {
     let ctype: string = typeof value, temp: string;
     if (ctype === "object")
@@ -105,7 +107,7 @@ export function CheckArgTypes(args: IArguments, types: string[], reference: stri
     return true;
 }
 
-export function el(id: string): HTMLElement {
+export function el(id: string): Element {
     CheckArgTypes(arguments, ["string"], "el()");
     return document.getElementById(id);
 }
@@ -151,7 +153,7 @@ export function loadDoc(eid: string, page: string): void {
     }
 }
 
-export function directiveSetStyles(el: HTMLElement, stylesObject: {}): void {
+export function directiveSetStyles(el: Element, stylesObject: {}): void {
     for (let key in stylesObject)
         el["style"][key] = stylesObject[key];
 }
@@ -163,20 +165,20 @@ export function waitForIt(conditionFunction: Function, actionFunction: Function)
     else
         actionFunction();
 }
-export function createElement(type: string): HTMLElement {
+export function createElement(type: string): Element {
     CheckArgTypes(arguments, ["string"], "createElement()");
     return document.createElement(type);
 }
-export function fillDivWithText(text: string, element: HTMLElement): HTMLElement {
+export function fillDivWithText(text: string, element: Element): Element {
     return element["createTextNode"](text);
 }
-export function addAttribute(element: HTMLElement, name: string, value: string): HTMLElement {
+export function addAttribute(element: Element, name: string, value: string): Element {
     let att = document.createAttribute(name);
     att.value = value;
     element.setAttributeNode(att);
     return element;
 }
-export function obid(id: string): HTMLElement {
+export function obid(id: string): Element {
     CheckArgTypes(arguments, ["string"], "obid()");
     return document.getElementById(id);
 }

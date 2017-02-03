@@ -71,6 +71,8 @@ function isStart(value) {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
 exports.isStart = isStart;
+function px(value) { return value.toString() + "px"; }
+exports.px = px;
 function TypeOf(value, match) {
     if (match === void 0) { match = undefined; }
     var ctype = typeof value, temp;

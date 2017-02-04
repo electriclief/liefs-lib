@@ -21,6 +21,12 @@ var liefsError = {
         throw reference + " Expected " + expected + " received " + received + ".";
     }
 };
+function onEvent(el, eventType, eventFunction) {
+    if (el.addEventListener)
+        el.addEventListener(eventType, eventFunction, false);
+    else if (el.attachEvent)
+        el.attachEvent(eventType, eventFunction);
+}
 function uniqueArray(array, optionalConcatArray) {
     if (optionalConcatArray === void 0) { optionalConcatArray = []; }
     var a = array.concat(optionalConcatArray);

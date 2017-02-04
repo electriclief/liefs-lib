@@ -60,6 +60,7 @@ export function isStart(value: string): boolean {
 }
 
 export function px(value: number): string { return value.toString() + "px"; }
+export function vpx(value: string): number { return parseInt(value.slice(0, -2)); }
 
 export function TypeOf(value: any, match: string = undefined): string | boolean {
     let ctype: string = typeof value, temp: string;

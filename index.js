@@ -80,6 +80,8 @@ function isStart(value) {
 exports.isStart = isStart;
 function px(value) { return value.toString() + "px"; }
 exports.px = px;
+function vpx(value) { return parseInt(value.slice(0, -2)); }
+exports.vpx = vpx;
 function TypeOf(value, match) {
     if (match === void 0) { match = undefined; }
     var ctype = typeof value, temp;

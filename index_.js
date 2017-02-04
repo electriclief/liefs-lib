@@ -72,6 +72,7 @@ function isStart(value) {
     return value.slice(-1) === "%" || value.slice(-2) === "px";
 }
 function px(value) { return value.toString() + "px"; }
+function vpx(value) { return parseInt(value.slice(0, -2)); }
 function TypeOf(value, match) {
     if (match === void 0) { match = undefined; }
     var ctype = typeof value, temp;

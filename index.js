@@ -29,16 +29,13 @@ function onEvent(el, eventType, eventFunction) {
         el.attachEvent(eventType, eventFunction);
 }
 exports.onEvent = onEvent;
-function uniqueArray(array, optionalConcatArray) {
-    if (optionalConcatArray === void 0) { optionalConcatArray = []; }
-    var a = array.concat(optionalConcatArray);
-    for (var i = 0; i < a.length; ++i)
-        for (var j = i + 1; j < a.length; ++j)
-            if (a[i] === a[j])
-                a.splice(j--, 1);
+/*
+export function uniqueArray(array: Array<any>, optionalConcatArray: Array<any> = []) {
+    let a = array.concat(optionalConcatArray);
+    for (let i = 0; i < a.length; ++i) for (let j = i + 1; j < a.length; ++j) if (a[i] === a[j]) a.splice(j--, 1);
     return a;
 }
-exports.uniqueArray = uniqueArray;
+*/
 function nthIndex(str, pat, n) {
     var L = str.length, i = -1;
     while (n-- && i++ < L) {
@@ -181,21 +178,21 @@ function directive(querrySelectorAll, attributesList) {
     return returnArray;
 }
 exports.directive = directive;
-function loadDoc(eid, page) {
-    var _this = this;
+/*
+export function loadDoc(eid: string, page: string): void {
     CheckArgTypes(arguments, ["string", "string"], "loadDoc()");
-    var e = document.getElementById(eid);
+    let e = document.getElementById(eid);
     if (e) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (_this.readyState === 4 && _this.status === 200)
-                e.innerHTML = _this.responseText;
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = () => {
+            if (this.readyState === 4 && this.status === 200)
+                e.innerHTML = this.responseText;
         };
         xhttp.open("GET", page, true);
         xhttp.send();
     }
 }
-exports.loadDoc = loadDoc;
+*/
 function directiveSetStyles(el, stylesObject) {
     for (var _i = 0, _a = Object.keys(stylesObject); _i < _a.length; _i++) {
         var key = _a[_i];
@@ -203,52 +200,46 @@ function directiveSetStyles(el, stylesObject) {
     }
 }
 exports.directiveSetStyles = directiveSetStyles;
-function waitForIt(conditionFunction, actionFunction) {
+/*
+export function waitForIt(conditionFunction: Function, actionFunction: Function): void {
     CheckArgTypes(arguments, ["function", "function"], "waitForIt()");
     if (!conditionFunction())
         window.setTimeout(waitForIt.bind(null, conditionFunction, actionFunction), 100);
     else
         actionFunction();
 }
-exports.waitForIt = waitForIt;
-function createElement(type) {
+
+export function createElement(type: string): Element {
     CheckArgTypes(arguments, ["string"], "createElement()");
     return document.createElement(type);
 }
-exports.createElement = createElement;
-function fillDivWithText(text, element) {
+export function fillDivWithText(text: string, element: Element): Element {
     return element["createTextNode"](text);
 }
-exports.fillDivWithText = fillDivWithText;
-function addAttribute(element, name, value) {
-    var att = document.createAttribute(name);
+export function addAttribute(element: Element, name: string, value: string): Element {
+    let att = document.createAttribute(name);
     att.value = value;
     element.setAttributeNode(att);
     return element;
 }
-exports.addAttribute = addAttribute;
-function obid(id) {
+export function obid(id: string): Element {
     CheckArgTypes(arguments, ["string"], "obid()");
     return document.getElementById(id);
 }
-exports.obid = obid;
-function pauseEvent(e, key) {
-    if (key === void 0) { key = "selection"; }
+export function pauseEvent(e: Event, key: string = "selection"): boolean { // makes it so so
     if (document[key]) {
         document[key].empty();
-    }
-    else if (window.getSelection) {
+    } else if (window.getSelection) {
         window.getSelection().removeAllRanges();
     }
-    if (e.stopPropagation)
-        e.stopPropagation();
-    if (e.preventDefault)
-        e.preventDefault();
+
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.preventDefault) e.preventDefault();
     e.cancelBubble = true;
     e.returnValue = false;
     return false;
 }
-exports.pauseEvent = pauseEvent;
+ */
 function isItIn(key, object) {
     //    CheckArgTypes(arguments, ["string", "object"], "isItIn()");
     var keys = Object.keys(object);
@@ -257,12 +248,12 @@ function isItIn(key, object) {
     return object[key];
 }
 exports.isItIn = isItIn;
-function throwType(expected, received, reference) {
-    if (reference === void 0) { reference = ""; }
+/*
+export function throwType(expected: string, received: string, reference: string = "") {
     CheckArgTypes(arguments, ["string", "string", "string"], reference + " throwType()", false);
     throw "Invalid Type Entered " + reference + " expected type " + expected + " received type " + received;
 }
-exports.throwType = throwType;
+*/
 function Objectassign(obj) {
     var ro = {};
     for (var key in obj)

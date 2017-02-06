@@ -27,15 +27,13 @@ function onEvent(el, eventType, eventFunction) {
     else if (el.attachEvent)
         el.attachEvent(eventType, eventFunction);
 }
-function uniqueArray(array, optionalConcatArray) {
-    if (optionalConcatArray === void 0) { optionalConcatArray = []; }
-    var a = array.concat(optionalConcatArray);
-    for (var i = 0; i < a.length; ++i)
-        for (var j = i + 1; j < a.length; ++j)
-            if (a[i] === a[j])
-                a.splice(j--, 1);
+/*
+ function uniqueArray(array: Array<any>, optionalConcatArray: Array<any> = []) {
+    let a = array.concat(optionalConcatArray);
+    for (let i = 0; i < a.length; ++i) for (let j = i + 1; j < a.length; ++j) if (a[i] === a[j]) a.splice(j--, 1);
     return a;
 }
+*/
 function nthIndex(str, pat, n) {
     var L = str.length, i = -1;
     while (n-- && i++ < L) {
@@ -165,66 +163,67 @@ function directive(querrySelectorAll, attributesList) {
     }
     return returnArray;
 }
-function loadDoc(eid, page) {
-    var _this = this;
+/*
+ function loadDoc(eid: string, page: string): void {
     CheckArgTypes(arguments, ["string", "string"], "loadDoc()");
-    var e = document.getElementById(eid);
+    let e = document.getElementById(eid);
     if (e) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (_this.readyState === 4 && _this.status === 200)
-                e.innerHTML = _this.responseText;
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = () => {
+            if (this.readyState === 4 && this.status === 200)
+                e.innerHTML = this.responseText;
         };
         xhttp.open("GET", page, true);
         xhttp.send();
     }
 }
+*/
 function directiveSetStyles(el, stylesObject) {
     for (var _i = 0, _a = Object.keys(stylesObject); _i < _a.length; _i++) {
         var key = _a[_i];
         el["style"][key] = stylesObject[key];
     }
 }
-function waitForIt(conditionFunction, actionFunction) {
+/*
+ function waitForIt(conditionFunction: Function, actionFunction: Function): void {
     CheckArgTypes(arguments, ["function", "function"], "waitForIt()");
     if (!conditionFunction())
         window.setTimeout(waitForIt.bind(null, conditionFunction, actionFunction), 100);
     else
         actionFunction();
 }
-function createElement(type) {
+
+ function createElement(type: string): Element {
     CheckArgTypes(arguments, ["string"], "createElement()");
     return document.createElement(type);
 }
-function fillDivWithText(text, element) {
+ function fillDivWithText(text: string, element: Element): Element {
     return element["createTextNode"](text);
 }
-function addAttribute(element, name, value) {
-    var att = document.createAttribute(name);
+ function addAttribute(element: Element, name: string, value: string): Element {
+    let att = document.createAttribute(name);
     att.value = value;
     element.setAttributeNode(att);
     return element;
 }
-function obid(id) {
+ function obid(id: string): Element {
     CheckArgTypes(arguments, ["string"], "obid()");
     return document.getElementById(id);
 }
-function pauseEvent(e, key) {
-    if (key === void 0) { key = "selection"; }
+ function pauseEvent(e: Event, key: string = "selection"): boolean { // makes it so so
     if (document[key]) {
         document[key].empty();
-    }
-    else if (window.getSelection) {
+    } else if (window.getSelection) {
         window.getSelection().removeAllRanges();
     }
-    if (e.stopPropagation)
-        e.stopPropagation();
-    if (e.preventDefault)
-        e.preventDefault();
+
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.preventDefault) e.preventDefault();
     e.cancelBubble = true;
     e.returnValue = false;
     return false;
 }
+ */
 function isItIn(key, object) {
     //    CheckArgTypes(arguments, ["string", "object"], "isItIn()");
     var keys = Object.keys(object);
@@ -232,11 +231,12 @@ function isItIn(key, object) {
         return null;
     return object[key];
 }
-function throwType(expected, received, reference) {
-    if (reference === void 0) { reference = ""; }
+/*
+ function throwType(expected: string, received: string, reference: string = "") {
     CheckArgTypes(arguments, ["string", "string", "string"], reference + " throwType()", false);
     throw "Invalid Type Entered " + reference + " expected type " + expected + " received type " + received;
 }
+*/
 function Objectassign(obj) {
     var ro = {};
     for (var key in obj)

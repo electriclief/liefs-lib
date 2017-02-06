@@ -20,12 +20,13 @@ export function onEvent (el: any, eventType: string, eventFunction: Function) {
   if (el.addEventListener) el.addEventListener(eventType, eventFunction, false);
   else if (el.attachEvent) el.attachEvent(eventType, eventFunction);
 }
+/*
 export function uniqueArray(array: Array<any>, optionalConcatArray: Array<any> = []) {
     let a = array.concat(optionalConcatArray);
     for (let i = 0; i < a.length; ++i) for (let j = i + 1; j < a.length; ++j) if (a[i] === a[j]) a.splice(j--, 1);
     return a;
 }
-
+*/
 export function nthIndex(str: string, pat: string, n: number): number {
     let L = str.length, i = -1;
     while (n-- && i++ < L) {
@@ -142,7 +143,7 @@ export function directive(querrySelectorAll: string, attributesList: Array<strin
     }
     return returnArray;
 }
-
+/*
 export function loadDoc(eid: string, page: string): void {
     CheckArgTypes(arguments, ["string", "string"], "loadDoc()");
     let e = document.getElementById(eid);
@@ -156,11 +157,11 @@ export function loadDoc(eid: string, page: string): void {
         xhttp.send();
     }
 }
-
+*/
 export function directiveSetStyles(el: Element, stylesObject: {}): void {
     for (let key of Object.keys(stylesObject)) el["style"][key] = stylesObject[key];
 }
-
+/*
 export function waitForIt(conditionFunction: Function, actionFunction: Function): void {
     CheckArgTypes(arguments, ["function", "function"], "waitForIt()");
     if (!conditionFunction())
@@ -168,6 +169,7 @@ export function waitForIt(conditionFunction: Function, actionFunction: Function)
     else
         actionFunction();
 }
+
 export function createElement(type: string): Element {
     CheckArgTypes(arguments, ["string"], "createElement()");
     return document.createElement(type);
@@ -198,17 +200,19 @@ export function pauseEvent(e: Event, key: string = "selection"): boolean { // ma
     e.returnValue = false;
     return false;
 }
+ */
 export function isItIn(key: string, object: {}) {
     //    CheckArgTypes(arguments, ["string", "object"], "isItIn()");
     let keys = Object.keys(object);
     if (keys.indexOf(key) === -1) return null;
     return object[key];
 }
-
+/*
 export function throwType(expected: string, received: string, reference: string = "") {
     CheckArgTypes(arguments, ["string", "string", "string"], reference + " throwType()", false);
     throw "Invalid Type Entered " + reference + " expected type " + expected + " received type " + received;
 }
+*/
 export function Objectassign(obj: any): {} { // where obj is Directive object
     let ro = {};
     for (let key in obj) ro[key] = obj[key];
